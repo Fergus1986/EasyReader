@@ -1,6 +1,6 @@
 package iteracion01;
 
-import iteracion01.dominio.GestionarCanal;
+import iteracion01.presentacion.AddRSS_Controlador;
 
 /**
  * Hello world!
@@ -12,10 +12,9 @@ public class App
     {
         System.out.println( "Iteracion 01" );
         
-        GestionarCanal reader = new GestionarCanal();
+        AddRSS_Controlador app = new AddRSS_Controlador();
+        app.startApplication();
         
-        reader.addCanal("http://www.vidaextra.com/index.xml");
-        
-        
+        // URL de prueba: http://www.vidaextra.com/index.xml
     }
 }
