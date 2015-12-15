@@ -24,5 +24,6 @@
   </dependencies>
   <modules>
   	<module>Iteracion01</module>
+  	<module>Iteracion02</module>
   </modules>
 </project>

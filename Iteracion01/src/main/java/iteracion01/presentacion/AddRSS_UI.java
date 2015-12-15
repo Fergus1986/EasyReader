@@ -10,6 +10,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 
+
 public class AddRSS_UI extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -18,12 +19,14 @@ public class AddRSS_UI extends JFrame {
 	private JTextField txtURL;
 	private JButton btnSalir;
 	private JComboBox<String> comboBoxCategoria;
+	private JButton btnAdd;
 	
 	/**
 	 * Create the frame.
 	 */
 	public AddRSS_UI() {
-		setType(Type.POPUP);
+		setResizable(false);
+		setType(Type.UTILITY);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -42,7 +45,7 @@ public class AddRSS_UI extends JFrame {
 		
 		comboBoxCategoria = new JComboBox<String>();
 		
-		JButton btnAadir = new JButton("Añadir");
+		btnAdd = new JButton("Añadir");
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -54,7 +57,7 @@ public class AddRSS_UI extends JFrame {
 								.addComponent(lblIntroduceLaUrl)
 								.addComponent(lblCategoria)
 								.addComponent(comboBoxCategoria, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnAadir))
+								.addComponent(btnAdd))
 							.addGap(14)
 							.addComponent(txtURL, GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE))
 						.addComponent(btnSalir, Alignment.TRAILING))
@@ -72,7 +75,7 @@ public class AddRSS_UI extends JFrame {
 					.addGap(18)
 					.addComponent(comboBoxCategoria, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
-					.addComponent(btnAadir)
+					.addComponent(btnAdd)
 					.addGap(18)
 					.addComponent(btnSalir)
 					.addGap(65))
@@ -94,6 +97,14 @@ public class AddRSS_UI extends JFrame {
 
 	public void setComboBoxCategoria(JComboBox<String> comboBoxCategoria) {
 		this.comboBoxCategoria = comboBoxCategoria;
+	}
+
+	public JButton getBtnAdd() {
+		return btnAdd;
+	}
+
+	public void setBtnAdd(JButton btnAdd) {
+		this.btnAdd = btnAdd;
 	}
 
 	public JButton getBtnSalir() {

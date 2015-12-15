@@ -11,6 +11,7 @@ import com.sun.syndication.io.XmlReader;
 
 import iteracion01.persistencia.CanalDAO;
 import iteracion01.persistencia.CategoriaDAO;
+import iteracion01.util.SystemException;
 
 
 public class GestionarCanal {
@@ -22,7 +23,7 @@ public class GestionarCanal {
 		loadCategorias();
 	}
 	
-	public void addCanal(String url, String categoria){
+	public void addCanal(String url, String categoria) throws CanalException {
 		
 		URL feedUrl;
 		SyndFeedInput input;
@@ -37,29 +38,35 @@ public class GestionarCanal {
 			try {
 				feed = input.build(new XmlReader(feedUrl));
 				
-				int index = getCategorias().indexOf(new Categoria(categoria));
-				canal = new Canal(feed.getTitle(), feed.getLink(), url, feed.getDescription(), getCategorias().get(index).getId());
-				
 				CanalDAO canalDAO = new CanalDAO();
-				canalDAO.save(canal);				
+				
+				if (canalDAO.getCanal(url) == null){
+					
+					int index = getCategorias().indexOf(new Categoria(categoria));
+					canal = new Canal(feed.getTitle(), feed.getLink(), url, feed.getDescription(), getCategorias().get(index).getId());
+					canalDAO.save(canal);
+					
+				}else{
+					
+					throw new CanalException(CanalErrorCode.BAD_DUPLICATED);
+				}
 				
 			} catch (IllegalArgumentException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				
+				throw new CanalException(CanalErrorCode.BAD_UNDEFINED);
 				
 			} catch (FeedException e) {
-				// TODO Auto-generated catch block
 				
-				e.printStackTrace();
+				throw new CanalException(CanalErrorCode.BAD_FEED);
 				
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				
+				throw new CanalException(CanalErrorCode.BAD_UNDEFINED);
 			}
 
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
+			throw new CanalException(CanalErrorCode.BAD_URL);
 		}
 	}
 	

@@ -6,8 +6,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
+import iteracion01.dominio.CanalErrorCode;
+import iteracion01.dominio.CanalException;
 import iteracion01.dominio.Categoria;
 import iteracion01.dominio.GestionarCanal;
+import iteracion01.util.SystemException;
 
 public class AddRSS_Controlador {
 	
@@ -43,6 +48,16 @@ public class AddRSS_Controlador {
 			}
 		});
 		
+		getFrame().getBtnAdd().addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				addCanal();
+				
+			}
+		});
+		
+		// Load categorias from the DB
+		
 		getCategorias();
 	}
 	
@@ -59,7 +74,48 @@ public class AddRSS_Controlador {
 	
 	public void addCanal(){
 		
-		getReader().addCanal(getFrame().getTxtURL().getText(), getFrame().getComboBoxCategoria().getSelectedItem().toString());		
+		try{
+			
+			getReader().addCanal(getFrame().getTxtURL().getText(), getFrame().getComboBoxCategoria().getSelectedItem().toString());
+			
+		}catch(CanalException e){
+			
+			if (e.getErrorCode() == CanalErrorCode.BAD_URL )
+			{
+				JOptionPane.showMessageDialog(
+						getFrame(),
+						"No se ha introducido una URL válida",
+						"Error",
+					    JOptionPane.ERROR_MESSAGE);
+				
+			}else if (e.getErrorCode() == CanalErrorCode.BAD_FEED){
+				
+				JOptionPane.showMessageDialog(
+						getFrame(),
+						"Se ha encontrado un error en el canal",
+						"Error",
+					    JOptionPane.ERROR_MESSAGE);
+				
+				
+			}else if (e.getErrorCode() == CanalErrorCode.BAD_DUPLICATED){
+				
+				JOptionPane.showMessageDialog(
+						getFrame(),
+						"El canal ya se había añadido anteriormente",
+						"Advertencia",
+					    JOptionPane.WARNING_MESSAGE);				
+
+				
+			}else if (e.getErrorCode() == CanalErrorCode.BAD_UNDEFINED){
+				
+				JOptionPane.showMessageDialog(
+						getFrame(),
+						"Se ha encontrado un error indeterminado",
+						"Advertencia",
+					    JOptionPane.ERROR_MESSAGE);
+
+			}
+		}
 	}
 	
 	public void close(){
