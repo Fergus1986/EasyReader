@@ -4,7 +4,9 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
+import iteracion01.dominio.Categoria;
 import iteracion01.dominio.GestionarCanal;
 
 public class AddRSS_Controlador {
@@ -41,15 +43,28 @@ public class AddRSS_Controlador {
 			}
 		});
 		
+		getCategorias();
+	}
+	
+	public void getCategorias(){
+		
+		getFrame().getComboBoxCategoria().removeAllItems();
+		
+		List<Categoria> categorias = getReader().getCategorias();
+				
+		for (Categoria categoria: categorias){
+			getFrame().getComboBoxCategoria().addItem(categoria.getNombre());
+		}
 	}
 	
 	public void addCanal(){
 		
-		getReader().addCanal(getFrame().getTxtURL().getText());
+		getReader().addCanal(getFrame().getTxtURL().getText(), getFrame().getComboBoxCategoria().getSelectedItem().toString());		
 	}
 	
 	public void close(){
-		System.exit(0);
+		//System.exit(0);
+		frame.dispose();
 	}
 
 	public GestionarCanal getReader() {

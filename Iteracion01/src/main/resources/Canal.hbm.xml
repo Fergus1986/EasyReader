@@ -25,8 +25,8 @@
             <column name="descripcion" length="127" not-null="false" unique="false" />
         </property>
         
-        <property name="categoria" type="string">
-            <column name="categoria" length="63" not-null="false" unique="false" />
+        <property name="categoria" type="java.lang.Integer">
+            <column name="categoria" not-null="true" unique="false" />
         </property>        
         
     </class>

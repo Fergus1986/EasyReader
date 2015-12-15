@@ -8,7 +8,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
-import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JComboBox;
 
 public class AddRSS_UI extends JFrame {
 
@@ -17,11 +17,13 @@ public class AddRSS_UI extends JFrame {
 	
 	private JTextField txtURL;
 	private JButton btnSalir;
+	private JComboBox<String> comboBoxCategoria;
 	
 	/**
 	 * Create the frame.
 	 */
 	public AddRSS_UI() {
+		setType(Type.POPUP);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -35,6 +37,12 @@ public class AddRSS_UI extends JFrame {
 		txtURL.setColumns(10);
 		
 		btnSalir = new JButton("Salir");
+		
+		JLabel lblCategoria = new JLabel("Categoria");
+		
+		comboBoxCategoria = new JComboBox<String>();
+		
+		JButton btnAadir = new JButton("Añadir");
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -42,7 +50,11 @@ public class AddRSS_UI extends JFrame {
 					.addContainerGap()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(lblIntroduceLaUrl)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+								.addComponent(lblIntroduceLaUrl)
+								.addComponent(lblCategoria)
+								.addComponent(comboBoxCategoria, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnAadir))
 							.addGap(14)
 							.addComponent(txtURL, GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE))
 						.addComponent(btnSalir, Alignment.TRAILING))
@@ -55,9 +67,15 @@ public class AddRSS_UI extends JFrame {
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblIntroduceLaUrl)
 						.addComponent(txtURL, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 189, Short.MAX_VALUE)
+					.addGap(18)
+					.addComponent(lblCategoria)
+					.addGap(18)
+					.addComponent(comboBoxCategoria, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(btnAadir)
+					.addGap(18)
 					.addComponent(btnSalir)
-					.addContainerGap())
+					.addGap(65))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
@@ -68,6 +86,14 @@ public class AddRSS_UI extends JFrame {
 
 	public void setTxtURL(JTextField txtURL) {
 		this.txtURL = txtURL;
+	}
+
+	public JComboBox<String> getComboBoxCategoria() {
+		return comboBoxCategoria;
+	}
+
+	public void setComboBoxCategoria(JComboBox<String> comboBoxCategoria) {
+		this.comboBoxCategoria = comboBoxCategoria;
 	}
 
 	public JButton getBtnSalir() {

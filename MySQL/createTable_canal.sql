@@ -6,6 +6,7 @@ titulo VARCHAR(127) NOT NULL,
 enlace VARCHAR(127) NOT NULL,
 url VARCHAR(127) NOT NULL,
 descripcion VARCHAR(127),
-categoria VARCHAR(63),
-PRIMARY KEY (id) USING BTREE
+categoria INT,
+PRIMARY KEY (id) USING BTREE,
+FOREIGN KEY (categoria) REFERENCES categoria(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

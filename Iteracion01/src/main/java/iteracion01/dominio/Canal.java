@@ -9,13 +9,13 @@ public class Canal implements java.io.Serializable {
 	private String enlace;
 	private String url;
 	private String descripcion;
-	private String categoria;
+	private Integer categoria;
 	
 	public Canal(){
 		
 	}
 	
-	public Canal(String titulo, String enlace, String url, String descripcion, String categoria){
+	public Canal(String titulo, String enlace, String url, String descripcion, Integer categoria){
 		
 		setTitulo(titulo);
 		setEnlace(enlace);
@@ -64,18 +64,16 @@ public class Canal implements java.io.Serializable {
 		this.descripcion = descripcion;
 	}
 	
-	public String getCategoria() {
+	public Integer getCategoria() {
 		return categoria;
 	}
 
-	public void setCategoria(String categoria) {
+	public void setCategoria(Integer categoria) {
 		this.categoria = categoria;
 	}
 
-	public String toString(){
-		return getId() + ", " + getTitulo() + ", " + getEnlace() + ", " + getUrl();
+	@Override
+	public String toString() {
+		return "Canal [id=" + id + ", titulo=" + titulo + ", enlace=" + enlace + ", url=" + url + "]";
 	}
-	
-	
-
 }
