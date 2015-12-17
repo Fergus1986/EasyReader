@@ -12,22 +12,29 @@ import iteracion01.dominio.CanalErrorCode;
 import iteracion01.dominio.CanalException;
 import iteracion01.dominio.Categoria;
 import iteracion01.dominio.GestionarCanal;
-import iteracion01.util.SystemException;
 
 public class AddRSS_Controlador {
 	
 	private GestionarCanal reader;
 	private AddRSS_UI frame;
 	
-	public void startApplication(){
-		
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		
+	public AddRSS_Controlador(){
 		setReader(new GestionarCanal());
 		setFrame(new AddRSS_UI());
+	}
+	
+	public AddRSS_Controlador(GestionarCanal reader){
 		
+		setReader(reader);
+		setFrame(new AddRSS_UI());
+	}
+
+	public void start(){
+		
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+				
 		 // make the frame half the height and width
-		getFrame().setSize(screenSize.width/2, screenSize.height/2);
+		getFrame().setSize(screenSize.width/2, screenSize.height/4);
 		
 		// center the JFrame on screen
 		getFrame().setLocationRelativeTo(null);
@@ -119,7 +126,6 @@ public class AddRSS_Controlador {
 	}
 	
 	public void close(){
-		//System.exit(0);
 		frame.dispose();
 	}
 

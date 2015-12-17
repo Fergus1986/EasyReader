@@ -11,7 +11,6 @@ import com.sun.syndication.io.XmlReader;
 
 import iteracion01.persistencia.CanalDAO;
 import iteracion01.persistencia.CategoriaDAO;
-import iteracion01.util.SystemException;
 
 
 public class GestionarCanal {

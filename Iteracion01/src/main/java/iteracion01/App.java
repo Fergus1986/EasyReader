@@ -13,7 +13,7 @@ public class App
         System.out.println( "Iteracion 01" );
         
         AddRSS_Controlador app = new AddRSS_Controlador();
-        app.startApplication();
+        app.start();
         
         // URL de prueba: http://www.vidaextra.com/index.xml
     }

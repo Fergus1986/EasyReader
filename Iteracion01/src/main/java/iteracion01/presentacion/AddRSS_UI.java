@@ -9,6 +9,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 
 public class AddRSS_UI extends JFrame {
@@ -25,9 +26,10 @@ public class AddRSS_UI extends JFrame {
 	 * Create the frame.
 	 */
 	public AddRSS_UI() {
+		setTitle("Añadir RSS");
 		setResizable(false);
 		setType(Type.UTILITY);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -51,16 +53,18 @@ public class AddRSS_UI extends JFrame {
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+						.addComponent(lblIntroduceLaUrl)
+						.addComponent(lblCategoria)
+						.addComponent(comboBoxCategoria, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnAdd))
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-								.addComponent(lblIntroduceLaUrl)
-								.addComponent(lblCategoria)
-								.addComponent(comboBoxCategoria, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnAdd))
 							.addGap(14)
 							.addComponent(txtURL, GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE))
-						.addComponent(btnSalir, Alignment.TRAILING))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnSalir)))
 					.addContainerGap())
 		);
 		gl_contentPane.setVerticalGroup(
@@ -75,10 +79,10 @@ public class AddRSS_UI extends JFrame {
 					.addGap(18)
 					.addComponent(comboBoxCategoria, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
-					.addComponent(btnAdd)
-					.addGap(18)
-					.addComponent(btnSalir)
-					.addGap(65))
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnAdd)
+						.addComponent(btnSalir))
+					.addGap(108))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
