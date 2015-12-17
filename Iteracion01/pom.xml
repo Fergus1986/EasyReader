@@ -9,7 +9,7 @@
   </parent>
   <groupId>rtsoft.project.pud</groupId>
   <artifactId>Iteracion01</artifactId>
-  <version>0.1.0</version>
+  <version>0.2.0</version>
   <name>Iteracion01</name>
   <url>http://maven.apache.org</url>
   <properties>

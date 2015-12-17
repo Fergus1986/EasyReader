@@ -6,7 +6,9 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
+import iteracion01.dominio.Canal;
 import iteracion01.dominio.Categoria;
 
 
@@ -20,6 +22,12 @@ public class CategoriaDAO {
 	
 	public Categoria getCategoria(int id){
 		return getSession().get(Categoria.class, id);
+	}
+	
+	public Categoria getCategoria(String nombre){
+		Criteria criteria = session.createCriteria(Categoria.class);
+		Categoria categoria = (Categoria) criteria.add(Restrictions.eq("nombre", nombre)).uniqueResult();
+		return categoria;
 	}
 	
 	@SuppressWarnings("unchecked")

@@ -77,6 +77,11 @@ public class GestionarCanal {
 		
 	}
 	
+	public List<Canal> getCanales(int idCategoria){
+		CanalDAO canalDAO = new CanalDAO();
+		return canalDAO.getCanales(idCategoria);
+	}
+	
 	public void loadCategorias(){
 		CategoriaDAO categoriaDAO = new CategoriaDAO();
 		setCategorias(categoriaDAO.getCategorias());
